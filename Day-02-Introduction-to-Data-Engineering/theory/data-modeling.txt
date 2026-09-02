@@ -1,0 +1,186 @@
+DAY 2 - INTRODUCTION TO DATA ENGINEERING
+========================================
+
+TOPIC: DATA MODELLING BASICS
+
+1. WHAT IS DATA MODELLING?
+
+Data modelling is the process of designing how data is organized,
+stored, and related within a data system.
+
+It helps us understand:
+
+- What data needs to be stored
+- How different data elements are related
+- What each record represents
+- How data should be structured for analysis
+
+2. ENTITY
+
+An entity is a real-world object, concept, or thing about which
+we want to store information.
+
+Examples:
+
+- Customer
+- Product
+- Order
+- Employee
+- Department
+
+Example:
+
+Customer
+
+Customer_ID
+Customer_Name
+Email
+Phone
+
+3. RELATIONSHIP
+
+A relationship describes how two or more entities are connected.
+
+Example:
+
+Customer ---- places ----> Order
+
+This means a customer can place an order.
+
+Another example:
+
+Order ---- contains ----> Product
+
+This represents the relationship between orders and products.
+
+4. SIMPLE ENTITY-RELATIONSHIP EXAMPLE
+
+Customer
+   |
+   | places
+   v
+ Order
+   |
+   | contains
+   v
+ Product
+
+Entities:
+- Customer
+- Order
+- Product
+
+Relationships:
+- Customer places Order
+- Order contains Product
+
+5. TYPES OF RELATIONSHIPS
+
+A. One-to-One (1:1)
+-------------------
+One record in one entity is related to one record in another entity.
+
+Example:
+
+Person ---- has ----> Passport
+
+One person has one passport.
+
+B. One-to-Many (1:N)
+--------------------
+One record can be related to many records.
+
+Example:
+
+Customer ---- places ----> Orders
+
+One customer can place many orders.
+
+C. Many-to-Many (M:N)
+----------------------
+Many records in one entity can be related to many records
+in another entity.
+
+Example:
+
+Students ---- enroll in ----> Courses
+
+One student can enroll in many courses, and one course can
+have many students.
+
+6. GRAIN
+
+Grain defines the exact level of detail represented by one row
+in a table, especially in a fact table.
+
+Before designing a fact table, we should clearly define its grain.
+
+Example:
+
+Suppose we have an Order Sales table.
+
+If the grain is:
+
+"One row represents one product line in one order."
+
+Then an order containing three different products will produce
+three rows.
+
+Example:
+
+Order_ID    Product    Quantity
+1001        Laptop       1
+1001        Mouse        2
+1001        Keyboard     1
+
+The grain is:
+
+One row = one product line in one order.
+
+7. WHY GRAIN IS IMPORTANT
+
+Defining the grain helps us:
+
+- Understand what each row represents
+- Avoid incorrect aggregations
+- Design fact tables correctly
+- Maintain consistent calculations
+- Prevent duplicate counting
+
+8. DATA MODELLING EXAMPLE
+
+Business scenario:
+
+An online shopping company wants to analyze sales.
+
+Important entities:
+
+- Customer
+- Product
+- Order
+- Store
+- Date
+
+Possible relationships:
+
+Customer ---- places ----> Order
+Order ---- contains ----> Product
+Order ---- occurs on ----> Date
+
+Possible fact-table grain:
+
+"One row represents one product sold in one order."
+
+9. KEY IDEA
+
+Data modelling defines the structure of data and the relationships
+between different data entities.
+
+Entity = What we store information about.
+
+Relationship = How entities are connected.
+
+Grain = What exactly one row represents.
+
+Understanding these three concepts is essential for designing
+effective analytical data models.

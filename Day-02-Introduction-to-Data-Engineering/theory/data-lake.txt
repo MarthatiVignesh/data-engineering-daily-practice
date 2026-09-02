@@ -1,0 +1,110 @@
+DAY 2 - INTRODUCTION TO DATA ENGINEERING
+========================================
+
+TOPIC: DATA LAKE
+
+1. WHAT IS A DATA LAKE?
+
+A Data Lake is a centralized storage system that can store large
+amounts of data in its raw or original form.
+
+Unlike a traditional Data Warehouse, a Data Lake can store different
+types of data.
+
+Examples include:
+
+- Structured data
+- Semi-structured data
+- Unstructured data
+
+2. TYPES OF DATA STORED IN A DATA LAKE
+
+A Data Lake can store:
+
+- CSV files
+- JSON files
+- XML files
+- Application logs
+- Images
+- Videos
+- Audio
+- Sensor data
+- Clickstream data
+
+3. PURPOSE OF A DATA LAKE
+
+The main purpose of a Data Lake is to store large volumes of data
+in a flexible way.
+
+It can be useful for:
+
+- Big data processing
+- Data exploration
+- Machine learning
+- Data analytics
+- Storing raw data
+- Future analysis
+
+4. WHEN TO USE A DATA LAKE
+
+A Data Lake can be useful when an organization:
+
+- Has very large volumes of data
+- Receives data in different formats
+- Wants to preserve raw data
+- Needs flexibility in data processing
+- Performs machine learning or advanced analytics
+- Does not yet know all future analytical requirements
+
+5. DATA LAKE EXAMPLE
+
+Suppose an e-commerce company receives:
+
+- Customer transaction data
+- Website click logs
+- Mobile application logs
+- Product images
+- Customer reviews
+- JSON event data
+
+These different types of data can be stored in a Data Lake in
+their original or raw form.
+
+Later, the data can be processed and transformed according to
+business requirements.
+
+6. DATA LAKE IN A DATA ENGINEERING PIPELINE
+
+Source Systems
+      |
+      v
+Data Ingestion
+      |
+      v
+Data Lake
+      |
+      +------------------+
+      |                  |
+      v                  v
+Data Processing      Machine Learning
+      |
+      v
+Analytics / Reporting
+
+7. DATA WAREHOUSE VS DATA LAKE
+
+Data Warehouse:
+- Mainly stores structured and processed data
+- Designed mainly for analytics and reporting
+- Data is generally transformed before use
+
+Data Lake:
+- Can store structured, semi-structured and unstructured data
+- Can store data in raw form
+- Provides flexibility for analytics, big data and machine learning
+
+8. KEY IDEA
+
+A Data Lake provides flexible storage for large amounts of data
+in different formats, often preserving the data in its raw form
+until it is needed for processing and analysis.

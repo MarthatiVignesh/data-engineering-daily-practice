@@ -1,0 +1,70 @@
+DATA WAREHOUSE FUNDAMENTALS
+===========================
+
+Business Data Sources
+---------------------
+
++------------------+      +------------------+
+| Sales System     |      | Customer System  |
++------------------+      +------------------+
+          |                        |
+          |                        |
+          v                        v
++------------------------------------------------+
+|              ETL / ELT Process                 |
+|                                                |
+| Extract -> Transform -> Load                   |
++------------------------------------------------+
+                       |
+                       v
++------------------------------------------------+
+|               DATA WAREHOUSE                   |
+|                                                |
+|  Centralized and integrated analytical data   |
+|                                                |
+|  +-------------+  +-------------+              |
+|  | Sales Data  |  | Customer    |              |
+|  |             |  | Data        |              |
+|  +-------------+  +-------------+              |
+|                                                |
+|  Historical Data                               |
+|  Structured / Curated Data                     |
++------------------------------------------------+
+                       |
+                       v
++------------------------------------------------+
+|          BI / Reporting / Analytics            |
+|                                                |
+|  Reports | Dashboards | Business Analysis     |
++------------------------------------------------+
+
+
+KEY CHARACTERISTICS
+-------------------
+
+1. Subject-oriented
+2. Integrated
+3. Time-variant
+4. Non-volatile
+
+
+PURPOSE
+-------
+
+A Data Warehouse stores integrated and historical data
+for reporting, analytics and business decision-making.
+
+
+SIMPLE FLOW
+-----------
+
+Data Sources
+     |
+     v
+ETL / ELT
+     |
+     v
+Data Warehouse
+     |
+     v
+Reports / Dashboards / Analytics

@@ -1,0 +1,138 @@
+DATA LAKE CONCEPTS
+==================
+
+DATA SOURCES
+------------
+
++------------------+
+| Business Systems |
++------------------+
+         |
+         |
++------------------+       +------------------+
+| Applications     |       | IoT Devices     |
++------------------+       +------------------+
+         |                         |
+         |                         |
+         +------------+------------+
+                      |
+                      v
+              +----------------+
+              |    DATA LAKE   |
+              +----------------+
+                      |
+        +-------------+-------------+
+        |             |             |
+        v             v             v
++---------------+ +---------------+ +---------------+
+| Structured    | | Semi-          | | Unstructured |
+| Data          | | Structured Data | | Data         |
++---------------+ +---------------+ +---------------+
+| Tables        | | JSON          | | Images       |
+| CSV           | | XML           | | Videos       |
+| Databases     | | Logs          | | Audio        |
++---------------+ +---------------+ +---------------+
+                      |
+                      v
+              +----------------+
+              | Data Processing |
+              +----------------+
+                      |
+                      v
+              +----------------+
+              | Analytics / ML |
+              +----------------+
+
+
+WHAT IS A DATA LAKE?
+--------------------
+
+A Data Lake is a centralized storage system that can store
+large amounts of raw data in its original format.
+
+It can store:
+
+1. Structured data
+2. Semi-structured data
+3. Unstructured data
+
+
+EXAMPLES OF DATA
+----------------
+
+Structured:
+- Relational database tables
+- CSV files
+- Spreadsheets
+
+Semi-structured:
+- JSON
+- XML
+- Application logs
+
+Unstructured:
+- Images
+- Videos
+- Audio
+- Documents
+
+
+WHEN TO USE A DATA LAKE
+-----------------------
+
+A Data Lake is useful when:
+
+- Large amounts of data need to be stored.
+- Data comes from many different sources.
+- Data formats are different.
+- Raw data needs to be preserved.
+- Data may be used later for analytics or machine learning.
+- The required analysis is not known in advance.
+
+
+SIMPLE DATA LAKE FLOW
+---------------------
+
+Data Sources
+     |
+     v
++----------------+
+|    Data Lake   |
+|                |
+| Raw Data       |
+| Structured     |
+| Semi-structured|
+| Unstructured   |
++----------------+
+     |
+     v
+Processing
+     |
+     +------------------+
+     |                  |
+     v                  v
+ Analytics          Machine Learning
+
+
+DATA WAREHOUSE VS DATA LAKE
+---------------------------
+
+Data Warehouse:
+- Stores curated and integrated data.
+- Mainly used for analytics and reporting.
+- Usually contains structured analytical data.
+- Schema is generally defined before or during loading.
+
+Data Lake:
+- Can store raw data in its original format.
+- Stores structured, semi-structured and unstructured data.
+- Useful for analytics, data science and machine learning.
+- Schema can be applied when data is read or processed.
+
+
+KEY IDEA
+--------
+
+Data Warehouse = Curated data for analytics and reporting.
+
+Data Lake = Large-scale storage for raw data in different formats.

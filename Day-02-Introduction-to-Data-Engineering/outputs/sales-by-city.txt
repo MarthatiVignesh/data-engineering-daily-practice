@@ -1,0 +1,3 @@
+Vijayawada = 4500
+Hyderabad = 67000
+Warangal = 74000

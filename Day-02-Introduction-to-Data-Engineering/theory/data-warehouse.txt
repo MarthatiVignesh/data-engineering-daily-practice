@@ -1,0 +1,110 @@
+DAY 2 - INTRODUCTION TO DATA ENGINEERING
+========================================
+
+TOPIC: DATA WAREHOUSE FUNDAMENTALS
+
+1. WHAT IS A DATA WAREHOUSE?
+
+A Data Warehouse is a centralized system used to store and analyze
+large amounts of structured data collected from different sources.
+
+It is mainly designed for reporting, analytics, and decision-making.
+
+Example:
+
+A retail company may collect data from:
+
+- Sales systems
+- Customer systems
+- Payment systems
+- Inventory systems
+
+This data can be brought together into a Data Warehouse so that
+business users can analyze sales, customers, revenue, and other
+business information.
+
+2. PURPOSE OF A DATA WAREHOUSE
+
+The main purpose of a Data Warehouse is to provide a central place
+for analytical data.
+
+It helps organizations:
+
+- Analyze historical data
+- Generate reports
+- Identify business trends
+- Support decision-making
+- Combine data from multiple sources
+- Perform analytical queries
+
+3. CHARACTERISTICS OF A DATA WAREHOUSE
+
+Important characteristics include:
+
+A. Subject-oriented
+-------------------
+Data is organized around important business subjects such as:
+
+- Customers
+- Sales
+- Products
+- Employees
+
+B. Integrated
+-------------
+Data can come from multiple sources and is brought together into
+a consistent format.
+
+C. Time-variant
+---------------
+A Data Warehouse stores historical data, allowing organizations
+to analyze how information changes over time.
+
+D. Non-volatile
+---------------
+Data stored in a Data Warehouse is mainly used for analysis.
+It is not continuously changed like data in an operational system.
+
+4. SIMPLE EXAMPLE
+
+Suppose an online shopping company has:
+
+Customers
+Orders
+Products
+Payments
+
+The operational systems generate data every day.
+
+The data can be collected and transformed before being loaded into
+a Data Warehouse.
+
+Then analysts can answer questions such as:
+
+- What were the total sales this year?
+- Which product generated the highest revenue?
+- Which month had the highest sales?
+- Which customers purchased the most?
+
+5. DATA WAREHOUSE IN A DATA ENGINEERING PIPELINE
+
+Source Systems
+      |
+      v
+Data Ingestion
+      |
+      v
+Data Transformation
+      |
+      v
+Data Warehouse
+      |
+      v
+Analytics / Reporting / BI
+
+6. KEY IDEA
+
+A Data Warehouse is mainly designed for analytical workloads.
+
+It stores integrated and historical data so that organizations can
+perform reporting, analysis, and business decision-making.

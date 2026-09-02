@@ -1,0 +1,5 @@
+Sita = 25500
+Arjun = 12000
+Kiran = 3000
+Priya = 50000
+Ravi = 55000

@@ -1,0 +1,213 @@
+DATA WAREHOUSE SCHEMAS
+======================
+
+1. STAR SCHEMA
+--------------
+
+A Star Schema is a data warehouse schema in which one central Fact
+Table is directly connected to multiple Dimension Tables.
+
+Structure:
+
+                  +----------------+
+                  | Date Dimension |
+                  +----------------+
+                         |
+                         |
++----------------+   +----------------+   +------------------+
+| Product        |---| Sales Fact     |---| Customer         |
+| Dimension      |   | Table          |   | Dimension        |
++----------------+   +----------------+   +------------------+
+                         |
+                         |
+                  +----------------+
+                  | Store Dimension|
+                  +----------------+
+
+Fact Table:
+- Contains measurable business data.
+- Example: sales_amount, quantity, discount.
+- Contains foreign keys to dimension tables.
+
+Dimension Tables:
+- Contain descriptive information.
+- Examples: customer, product, date, store.
+
+Characteristics:
+- Simple structure.
+- Fewer joins.
+- Fast for analytical queries.
+- Dimension tables are generally denormalized.
+- Commonly used for reporting and business intelligence.
+
+Example:
+
+Sales Fact
+-----------
+date_id
+product_id
+customer_id
+store_id
+quantity
+sales_amount
+
+Product Dimension
+-----------------
+product_id
+product_name
+category
+brand
+
+Customer Dimension
+------------------
+customer_id
+customer_name
+city
+state
+
+
+2. SNOWFLAKE SCHEMA
+-------------------
+
+A Snowflake Schema is a data warehouse schema in which dimension
+tables are normalized into multiple related tables.
+
+Structure:
+
+                  +--------------+
+                  | Date         |
+                  +--------------+
+                         |
+                         |
++-------------+   +-------------+   +----------------+
+| Category    |---| Product     |---| Sales Fact     |
+| Dimension   |   | Dimension   |   | Table          |
++-------------+   +-------------+   +----------------+
+                                      |
+                                      |
+                               +--------------+
+                               | Customer     |
+                               +--------------+
+
+In a Snowflake Schema, a dimension can be divided into smaller
+normalized tables.
+
+Example:
+
+Product Dimension
+-----------------
+product_id
+product_name
+category_id
+
+Category Dimension
+------------------
+category_id
+category_name
+
+Characteristics:
+- More normalized than Star Schema.
+- Reduces data redundancy.
+- Uses more tables.
+- Requires more joins.
+- Queries can be more complex.
+- Useful when dimension data has hierarchical relationships.
+
+
+3. STAR SCHEMA VS SNOWFLAKE SCHEMA
+-----------------------------------
+
+Star Schema:
+- Dimensions are generally denormalized.
+- Fewer tables.
+- Fewer joins.
+- Simpler queries.
+- Usually faster for common analytical queries.
+- Easier to understand.
+
+Snowflake Schema:
+- Dimensions are normalized.
+- More tables.
+- More joins.
+- More complex queries.
+- Reduces redundancy.
+- Represents hierarchical dimensions more explicitly.
+
+
+4. THIRD NORMAL FORM (3NF)
+---------------------------
+
+Third Normal Form (3NF) is a database normalization technique.
+
+The main goal of 3NF is to reduce data redundancy and improve
+data integrity.
+
+In a 3NF design:
+- Data is divided into related tables.
+- Non-key attributes depend on the key.
+- Non-key attributes should not depend on other non-key attributes.
+
+Example:
+
+Customer
+--------
+customer_id
+customer_name
+city_id
+
+City
+----
+city_id
+city_name
+state
+
+Here, city_name and state are stored in the City table instead of
+repeating them for every customer.
+
+Characteristics:
+- Highly normalized.
+- Reduces duplicate data.
+- Helps maintain data integrity.
+- Commonly associated with transactional/operational databases.
+- Usually requires more joins for analytical queries.
+
+
+5. STAR SCHEMA, SNOWFLAKE SCHEMA AND 3NF
+-----------------------------------------
+
+Star Schema:
+Used mainly for analytical workloads.
+It has a central fact table and denormalized dimensions.
+
+Snowflake Schema:
+Used mainly for analytical workloads.
+It has a central fact table and normalized dimensions.
+
+3NF:
+Used mainly for normalized database design.
+It focuses on reducing redundancy and maintaining data integrity.
+
+
+6. SIMPLE COMPARISON
+--------------------
+
+                    STAR       SNOWFLAKE       3NF
+--------------------------------------------------------
+Normalization       Low        Higher          High
+Redundancy           More       Less            Very Low
+Number of Tables     Fewer      More            More
+Joins                Fewer      More            More
+Query Complexity     Low        Medium/High     High
+Main Purpose         Analytics  Analytics       Transactions
+Structure            Simple     Complex         Highly Normalized
+
+
+KEY IDEA
+--------
+
+Star Schema = Simple and analytics-friendly.
+
+Snowflake Schema = Normalized dimensions with more tables and joins.
+
+3NF = Highly normalized design focused on reducing redundancy and
+maintaining data integrity.

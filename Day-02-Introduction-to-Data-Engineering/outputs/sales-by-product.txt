@@ -1,0 +1,4 @@
+Keyboard = 4500
+Laptop = 100000
+Monitor = 36000
+Mouse = 5000

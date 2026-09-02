@@ -1,0 +1,126 @@
+DAY 2 - INTRODUCTION TO DATA ENGINEERING
+========================================
+
+TOPIC: DATA MART
+
+1. WHAT IS A DATA MART?
+
+A Data Mart is a smaller, focused collection of data designed
+for a particular business department, subject, or group of users.
+
+Examples:
+
+- Sales Data Mart
+- Finance Data Mart
+- HR Data Mart
+- Marketing Data Mart
+
+A Data Mart usually contains a subset of the data needed by a
+specific department.
+
+2. PURPOSE OF A DATA MART
+
+The main purpose of a Data Mart is to provide relevant data to
+a specific business area.
+
+It helps users:
+
+- Access relevant data quickly
+- Perform department-specific analysis
+- Generate reports
+- Support business decisions
+- Reduce the complexity of accessing enterprise data
+
+3. DATA MART EXAMPLE
+
+Suppose a company has a Data Warehouse containing:
+
+- Customer data
+- Sales data
+- Product data
+- Employee data
+- Finance data
+
+The company can create separate Data Marts:
+
+              DATA WAREHOUSE
+                    |
+          +---------+---------+
+          |         |         |
+          v         v         v
+       Sales      Finance     HR
+       Mart        Mart       Mart
+
+The Sales team can mainly work with the Sales Data Mart instead
+of working with the complete enterprise Data Warehouse.
+
+4. RELATIONSHIP BETWEEN DATA MART AND DATA WAREHOUSE
+
+A Data Warehouse is generally enterprise-wide and can contain
+data for many business areas.
+
+A Data Mart is smaller and focused on a particular business
+department or subject.
+
+Example:
+
+Enterprise Data Warehouse
+          |
+          +---- Sales Data Mart
+          |
+          +---- Finance Data Mart
+          |
+          +---- HR Data Mart
+          |
+          +---- Marketing Data Mart
+
+5. TYPES OF DATA MARTS
+
+A. Dependent Data Mart
+----------------------
+A dependent Data Mart gets its data from an existing Data Warehouse.
+
+Data Warehouse
+      |
+      v
+Data Mart
+
+B. Independent Data Mart
+------------------------
+An independent Data Mart obtains data directly from operational
+systems or other sources without depending on a central Data
+Warehouse.
+
+Source Systems
+      |
+      v
+Independent Data Mart
+
+C. Hybrid Data Mart
+--------------------
+A hybrid Data Mart can combine data from a Data Warehouse with
+data from other sources.
+
+6. DATA WAREHOUSE VS DATA MART
+
+Data Warehouse:
+- Enterprise-wide
+- Contains data for multiple business areas
+- Larger in scope
+- Supports organization-wide analytics
+
+Data Mart:
+- Department or subject-specific
+- Smaller in scope
+- Contains relevant data for a particular group
+- Supports focused analytics
+
+7. KEY IDEA
+
+A Data Mart is a smaller and focused analytical data store
+designed for a particular department, business function, or
+subject area.
+
+A Data Warehouse can serve the entire organization, while
+Data Marts provide focused access to specific areas of the
+business.

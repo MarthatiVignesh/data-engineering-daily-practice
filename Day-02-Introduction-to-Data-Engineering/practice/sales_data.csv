@@ -1,0 +1,9 @@
+order_id,product,customer,city,quantity,sales_amount 
+1001,Laptop,Ravi,Hyderabad,1,50000 
+1001,Mouse,Ravi,Hyderabad,2,2000 
+1002,Keyboard,Sita,Vijayawada,1,1500 
+1003,Monitor,Arjun,Hyderabad,1,12000 
+1004,Laptop,Priya,Warangal,1,50000 
+1005,Mouse,Kiran,Vijayawada,3,3000 
+1006,Keyboard,Ravi,Hyderabad,2,3000 
+1007,Monitor,Sita,Warangal,2,24000

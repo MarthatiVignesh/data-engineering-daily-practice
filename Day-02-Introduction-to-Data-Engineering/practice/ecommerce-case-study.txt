@@ -1,0 +1,287 @@
+DAY 2 - DATA ENGINEERING CASE STUDY
+====================================
+
+CASE STUDY: ONLINE SHOPPING COMPANY
+------------------------------------
+
+BUSINESS SCENARIO
+-----------------
+
+An online shopping company wants to store and analyze
+large amounts of business data.
+
+The company has the following data:
+
+1. Customer information
+2. Product information
+3. Order information
+4. Sales transactions
+5. Store information
+6. Date information
+7. Website logs
+8. Customer reviews
+9. Clickstream data
+10. Product images
+
+
+BUSINESS REQUIREMENTS
+---------------------
+
+Management wants to analyze:
+
+- Total sales
+- Sales by product
+- Sales by customer
+- Sales by city
+- Monthly sales
+- Product performance
+
+
+DATA STORAGE DECISION
+---------------------
+
+For structured and curated business data used for reporting
+and analytics, we choose a DATA WAREHOUSE.
+
+Reason:
+
+- Sales data is structured.
+- Customer data is structured.
+- Product data is structured.
+- Management requires analytical reports.
+- Historical data needs to be analyzed.
+- Business intelligence and dashboards require curated data.
+
+
+For raw and diverse data such as:
+
+- Website logs
+- JSON events
+- Customer reviews
+- Clickstream data
+- Images
+
+we choose a DATA LAKE.
+
+Reason:
+
+- Data comes in different formats.
+- Raw data can be preserved.
+- Structured, semi-structured and unstructured data can be stored.
+- The data may be used later for analytics or machine learning.
+
+
+DATA STORAGE DECISION
+---------------------
+
+Structured / Curated Business Data
+                |
+                v
+          DATA WAREHOUSE
+                |
+                v
+       Reporting / Analytics
+
+
+Raw / Diverse Data
+                |
+                v
+             DATA LAKE
+                |
+                v
+       Data Processing / ML
+
+
+DATA MODELLING DECISION
+-----------------------
+
+For the analytical Data Warehouse, we choose a STAR SCHEMA.
+
+Reason:
+
+- There is a central sales fact table.
+- Sales contains measurable values.
+- Customer, Product, Store and Date are dimensions.
+- The structure is simple.
+- It requires fewer joins.
+- It is suitable for reporting and analytical queries.
+
+
+STAR SCHEMA DESIGN
+------------------
+
+                     +----------------+
+                     | Date Dimension |
+                     +----------------+
+                             |
+                             |
++----------------+    +----------------+    +----------------+
+| Product        |----| Sales Fact     |----| Customer       |
+| Dimension      |    | Table          |    | Dimension      |
++----------------+    +----------------+    +----------------+
+                             |
+                             |
+                     +----------------+
+                     | Store Dimension|
+                     +----------------+
+
+
+FACT TABLE
+----------
+
+Sales_Fact
+
+- date_id
+- product_id
+- customer_id
+- store_id
+- quantity
+- sales_amount
+- discount
+
+
+DIMENSION TABLES
+----------------
+
+Product_Dimension
+
+- product_id
+- product_name
+- category
+- brand
+
+
+Customer_Dimension
+
+- customer_id
+- customer_name
+- city
+- state
+
+
+Store_Dimension
+
+- store_id
+- store_name
+- city
+- state
+
+
+Date_Dimension
+
+- date_id
+- date
+- month
+- quarter
+- year
+
+
+GRAIN
+-----
+
+The grain of the Sales Fact table is:
+
+"One row represents one product sold in one order."
+
+
+Example:
+
+Order_ID    Product     Quantity    Sales
+------------------------------------------
+1001        Laptop         1        50000
+1001        Mouse          2         2000
+1001        Keyboard       1         1500
+
+
+Therefore, the three rows represent three product lines
+within the same order.
+
+
+WHY GRAIN IS IMPORTANT
+----------------------
+
+The grain tells us exactly what one row represents.
+
+It helps us:
+
+- Avoid duplicate counting.
+- Perform correct aggregations.
+- Design the fact table correctly.
+- Maintain consistent calculations.
+
+
+FINAL DECISION
+--------------
+
+Data Warehouse:
+Use for structured and curated business data that is
+required for reporting and analytics.
+
+Data Lake:
+Use for raw data in different formats such as logs,
+JSON, reviews, clickstream data and images.
+
+Star Schema:
+Use for the analytical Data Warehouse because it provides
+a simple structure with a central fact table and dimension
+tables.
+
+Snowflake Schema:
+Can be considered when dimensions contain complex
+hierarchies and normalization is beneficial.
+
+3NF:
+More appropriate for highly normalized transactional or
+operational database design.
+
+
+FINAL ARCHITECTURE
+------------------
+
+                 +------------------+
+                 | Business Systems |
+                 +------------------+
+                          |
+                          v
+                 +------------------+
+                 |     DATA LAKE    |
+                 |                  |
+                 | Raw / Diverse    |
+                 | Data             |
+                 +------------------+
+                          |
+                    Processing
+                          |
+                          v
+                 +------------------+
+                 | DATA WAREHOUSE   |
+                 |                  |
+                 | Curated Data     |
+                 +------------------+
+                          |
+                          v
+                 +------------------+
+                 | Star Schema      |
+                 |                  |
+                 | Fact + Dimensions|
+                 +------------------+
+                          |
+                          v
+                 +------------------+
+                 | Analytics / BI   |
+                 | Reports / Dashboards|
+                 +------------------+
+
+
+CONCLUSION
+----------
+
+For this e-commerce scenario:
+
+DATA LAKE = Raw and diverse data
+
+DATA WAREHOUSE = Curated analytical data
+
+STAR SCHEMA = Analytical data model
+
+GRAIN = One product line in one order
