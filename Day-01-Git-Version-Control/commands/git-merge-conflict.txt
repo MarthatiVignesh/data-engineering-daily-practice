@@ -1,0 +1,40 @@
+DAY 1 - GIT MERGE CONFLICT PRACTICE
+
+Objective:
+To understand how Git handles conflicting changes between branches.
+
+Steps performed:
+
+1. Created a conflict practice file.
+2. Created a feature branch named conflict-feature.
+3. Modified the same file on the feature branch.
+4. Modified the same file differently on main.
+5. Attempted to merge conflict-feature into main.
+6. Git detected a merge conflict.
+7. Inspected the conflict using git status and cat.
+8. Manually resolved the conflict.
+9. Used git add to mark the conflict as resolved.
+10. Completed the merge using git commit.
+
+Commands practiced:
+
+git switch -c conflict-feature
+git switch main
+git merge conflict-feature
+git status
+git add <file>
+git commit -m "Resolve merge conflict"
+git log --oneline --all --graph
+git branch -d conflict-feature
+
+Conflict markers:
+
+<<<<<<< HEAD
+Current branch changes
+=======
+Incoming branch changes
+>>>>>>> conflict-feature
+
+Final resolution:
+
+Main and feature branch versions were reviewed and merged successfully.
