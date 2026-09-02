@@ -1,0 +1,307 @@
+DAY 3 - BIG DATA FUNDAMENTALS, HDFS & LINUX
+============================================
+
+TOPIC: HDFS ARCHITECTURE
+
+
+1. WHAT IS HDFS?
+----------------
+
+HDFS stands for Hadoop Distributed File System.
+
+HDFS is the distributed storage system used by Hadoop to store
+large files across multiple machines in a cluster.
+
+Instead of storing a large file on only one machine, HDFS divides
+the file into blocks and distributes those blocks across DataNodes.
+
+HDFS is designed for:
+
+- Large datasets
+- Distributed storage
+- High-throughput data access
+- Fault tolerance
+- Commodity hardware
+
+
+2. BASIC HDFS ARCHITECTURE
+--------------------------
+
+HDFS mainly uses two types of components:
+
+1. NameNode
+2. DataNode
+
+
+              +----------------+
+              |    NameNode    |
+              +----------------+
+                      |
+          +-----------+-----------+
+          |           |           |
+          v           v           v
+   +----------+ +----------+ +----------+
+   | DataNode | | DataNode | | DataNode |
+   |    1     | |    2     | |    3     |
+   +----------+ +----------+ +----------+
+
+
+3. NAMENODE
+-----------
+
+The NameNode is the master component of HDFS.
+
+It manages the metadata of the file system.
+
+Metadata includes information such as:
+
+- File names
+- Directory structure
+- File-to-block mapping
+- Block locations
+- Permissions
+
+The NameNode does not normally store the actual user file data
+blocks.
+
+Instead, it keeps information about where the blocks are stored.
+
+
+Example:
+
+File:
+sales.csv
+
+Metadata:
+
+sales.csv
+   |
+   +-- Block 1 -> DataNode 1
+   |
+   +-- Block 2 -> DataNode 2
+   |
+   +-- Block 3 -> DataNode 3
+
+
+4. DATANODE
+-----------
+
+DataNodes are worker nodes that store the actual HDFS data blocks.
+
+Responsibilities include:
+
+- Storing data blocks.
+- Serving read requests.
+- Handling write requests.
+- Creating block replicas.
+- Reporting their status to the NameNode.
+
+
+5. HDFS BLOCKS
+--------------
+
+HDFS divides large files into blocks.
+
+For example, suppose a file is larger than the configured block
+size.
+
+The file can be divided as:
+
+Large File
+    |
+    +---- Block 1
+    |
+    +---- Block 2
+    |
+    +---- Block 3
+    |
+    +---- Block 4
+
+
+Each block can be stored on a different DataNode.
+
+The exact block size is configurable and can vary by Hadoop
+version and cluster configuration.
+
+
+6. WHY DOES HDFS USE BLOCKS?
+----------------------------
+
+Blocks make distributed storage possible.
+
+Advantages include:
+
+- Large files can be distributed across machines.
+- Different blocks can be processed in parallel.
+- Blocks can be replicated for fault tolerance.
+- Storage can scale across multiple DataNodes.
+
+
+7. REPLICATION FACTOR
+---------------------
+
+Replication factor is the number of copies maintained for each
+HDFS block.
+
+For example, if the replication factor is 3:
+
+              Block A
+             /   |   \
+            /    |    \
+           v     v     v
+       DataNode1 DataNode2 DataNode3
+
+There are three copies of the block.
+
+If one DataNode fails, another replica can still be available.
+
+
+8. EXAMPLE OF REPLICATION
+-------------------------
+
+Suppose a file is divided into three blocks:
+
+File
+ |
+ +-- Block 1
+ +-- Block 2
+ +-- Block 3
+
+
+With replication factor = 3:
+
+Block 1 -> DataNode 1, DataNode 2, DataNode 3
+
+Block 2 -> DataNode 2, DataNode 3, DataNode 4
+
+Block 3 -> DataNode 1, DataNode 3, DataNode 4
+
+
+The exact placement is decided by HDFS based on cluster
+configuration and placement policies.
+
+
+9. NAME NODE AND DATA NODE RELATIONSHIP
+---------------------------------------
+
+The NameNode manages metadata.
+
+The DataNodes store actual blocks.
+
+Simplified view:
+
+             NameNode
+                |
+        Metadata / Block
+          Location Info
+                |
+       +--------+--------+
+       |        |        |
+       v        v        v
+   DataNode  DataNode  DataNode
+       |        |        |
+     Blocks   Blocks   Blocks
+
+
+10. READING A FILE
+------------------
+
+A simplified read operation:
+
+1. Client asks the NameNode for file information.
+2. NameNode provides block locations.
+3. Client reads the required blocks from DataNodes.
+4. Blocks are combined to reconstruct the file.
+
+
+Example:
+
+             Client
+                |
+                v
+           NameNode
+                |
+       Block Locations
+                |
+       +--------+--------+
+       |        |        |
+       v        v        v
+     DN1      DN2      DN3
+       |        |        |
+    Block1   Block2   Block3
+       \        |        /
+        \       |       /
+         +------+------+
+                |
+                v
+              File
+
+
+11. WRITING A FILE
+------------------
+
+A simplified write operation:
+
+1. Client requests to create a file.
+2. NameNode manages metadata and block allocation.
+3. Blocks are written to DataNodes.
+4. HDFS creates replicas according to the replication factor.
+5. DataNode information is reported back to the NameNode.
+
+
+12. HDFS ARCHITECTURE SUMMARY
+-----------------------------
+
+NameNode:
+- Manages metadata.
+- Tracks files and directories.
+- Tracks block locations.
+
+DataNode:
+- Stores actual data blocks.
+- Serves read and write requests.
+- Reports status to the NameNode.
+
+Block:
+- Unit of storage in HDFS.
+- Large files are divided into blocks.
+
+Replication Factor:
+- Number of copies of each block.
+- Helps provide fault tolerance and availability.
+
+
+13. SIMPLE HDFS DIAGRAM
+-----------------------
+
+                    +----------------+
+                    |    NameNode    |
+                    |    Metadata    |
+                    +----------------+
+                           |
+          +----------------+----------------+
+          |                |                |
+          v                v                v
+   +-------------+  +-------------+  +-------------+
+   |  DataNode 1 |  |  DataNode 2 |  |  DataNode 3 |
+   +-------------+  +-------------+  +-------------+
+   | Block A     |  | Block B     |  | Block C     |
+   | Block B     |  | Block C     |  | Block A     |
+   +-------------+  +-------------+  +-------------+
+
+
+KEY IDEA
+--------
+
+HDFS separates metadata management from data storage.
+
+NameNode = Manages metadata.
+
+DataNode = Stores actual data blocks.
+
+Block = Unit in which files are stored.
+
+Replication Factor = Number of copies of each block.
+
+Together, these concepts allow HDFS to store large datasets
+across multiple machines while providing fault tolerance.

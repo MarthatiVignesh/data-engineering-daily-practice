@@ -1,0 +1,121 @@
+DAY 3 - WORKED EXAMPLE
+======================
+
+TOPIC: MAPREDUCE WORD COUNT
+
+
+1. INPUT
+--------
+
+The input file contains:
+
+big data
+big data engineering
+data engineering
+big data
+
+
+2. MAP PHASE
+------------
+
+The mapper converts every word into a key-value pair:
+
+word -> 1
+
+Example:
+
+big -> 1
+data -> 1
+big -> 1
+data -> 1
+engineering -> 1
+
+The actual mapper output is stored in:
+
+outputs/map-output.txt
+
+
+3. SHUFFLE AND SORT
+-------------------
+
+The mapper output is sorted so that identical keys are grouped
+together.
+
+big -> 1
+big -> 1
+big -> 1
+
+data -> 1
+data -> 1
+data -> 1
+data -> 1
+
+engineering -> 1
+engineering -> 1
+
+The actual shuffle and sort output is stored in:
+
+outputs/shuffle-sort-output.txt
+
+
+4. REDUCE PHASE
+---------------
+
+The reducer adds the values for each key.
+
+big:
+1 + 1 + 1 = 3
+
+data:
+1 + 1 + 1 + 1 = 4
+
+engineering:
+1 + 1 = 2
+
+
+5. FINAL OUTPUT
+---------------
+
+big -> 3
+data -> 4
+engineering -> 2
+
+The actual reduce output is stored in:
+
+outputs/reduce-output.txt
+
+
+6. COMPLETE FLOW
+----------------
+
+Input
+  |
+  v
+MAP
+  |
+  v
+word -> 1
+  |
+  v
+SHUFFLE AND SORT
+  |
+  v
+same keys grouped
+  |
+  v
+REDUCE
+  |
+  v
+final word counts
+
+
+7. WHAT WE LEARNED
+------------------
+
+- MapReduce is a distributed processing model.
+- The MAP phase produces key-value pairs.
+- Shuffle and Sort groups intermediate results by key.
+- The REDUCE phase combines values for each key.
+- The final result contains the count for each word.
+- Linux commands were used to simulate the MapReduce workflow
+  locally.

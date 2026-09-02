@@ -1,0 +1,292 @@
+DAY 3 - BIG DATA FUNDAMENTALS, HDFS & LINUX
+============================================
+
+TOPIC: FAULT TOLERANCE OVERVIEW
+
+
+1. WHAT IS FAULT TOLERANCE?
+---------------------------
+
+Fault tolerance is the ability of a distributed system to continue
+working even when one or more components fail.
+
+Failures can occur because of:
+
+- Hardware problems
+- Network failures
+- Machine crashes
+- Disk failures
+- Software failures
+
+A distributed system should be designed so that the failure of one
+component does not necessarily cause the entire system to fail.
+
+
+2. WHY IS FAULT TOLERANCE IMPORTANT?
+------------------------------------
+
+Big Data systems use many machines.
+
+When the number of machines increases, the probability that one
+machine will fail also increases.
+
+Therefore, distributed systems need mechanisms to detect failures
+and continue operating when possible.
+
+HDFS provides fault tolerance through mechanisms such as:
+
+- Data replication
+- Heartbeats
+- NameNode High Availability
+
+
+3. HEARTBEAT
+------------
+
+A heartbeat is a regular status message sent by a DataNode to the
+NameNode.
+
+The heartbeat tells the NameNode that the DataNode is alive and
+operating.
+
+Simplified flow:
+
+       NameNode
+           ^
+           |
+       Heartbeat
+           |
+       DataNode
+
+
+If the NameNode stops receiving heartbeats from a DataNode for a
+configured period, it can consider that DataNode unavailable.
+
+The NameNode can then take appropriate action, such as maintaining
+the required number of block replicas on other available nodes.
+
+
+4. SINGLE POINT OF FAILURE (SPOF)
+---------------------------------
+
+SPOF stands for Single Point of Failure.
+
+A Single Point of Failure is a component whose failure can cause
+the entire system or an important service to become unavailable.
+
+Example:
+
+              +----------------+
+              |    NameNode    |
+              +----------------+
+                       |
+          +------------+------------+
+          |            |            |
+          v            v            v
+       DataNode     DataNode     DataNode
+
+If there is only one NameNode and it fails, the HDFS namespace
+and metadata service can become unavailable.
+
+Therefore, the NameNode can represent a critical failure point
+in a simple HDFS architecture.
+
+
+5. NAMENODE HIGH AVAILABILITY (HA)
+----------------------------------
+
+NameNode High Availability is designed to reduce the impact of
+a NameNode failure.
+
+Instead of relying on only one NameNode, an HA configuration uses
+multiple NameNode roles.
+
+A simplified concept is:
+
+          +----------------+
+          | Active NameNode|
+          +----------------+
+                  |
+                  |
+          +----------------+
+          | Standby NameNode|
+          +----------------+
+
+The Active NameNode serves normal client operations.
+
+The Standby NameNode is kept ready so that it can take over if
+the Active NameNode fails.
+
+This reduces downtime and avoids depending on a single NameNode.
+
+
+6. ACTIVE AND STANDBY NAMENODES
+-------------------------------
+
+Active NameNode:
+
+- Handles normal client requests.
+- Manages the active namespace service.
+
+Standby NameNode:
+
+- Maintains a synchronized view of the namespace.
+- Is ready to become active if required.
+
+The goal is to provide higher availability for the HDFS
+namespace.
+
+
+7. QUORUM JOURNAL MANAGER (QJM)
+-------------------------------
+
+Quorum Journal Manager, commonly called QJM, is used in HDFS
+High Availability configurations to provide shared storage for
+the edits made to the namespace.
+
+The namespace changes are written to JournalNodes.
+
+A simplified concept:
+
+              Active NameNode
+                     |
+                     v
+              +-------------+
+              |   Journal   |
+              |    Nodes    |
+              +-------------+
+               /     |     \
+              v      v      v
+            JN1     JN2     JN3
+               \     |     /
+                \    |    /
+                     v
+              Standby NameNode
+
+
+The JournalNodes maintain copies of namespace edit information.
+
+A quorum is used so that the system can continue operating even
+if some JournalNodes become unavailable.
+
+
+8. WHY QUORUM IS USED
+---------------------
+
+A quorum means that a majority of the required nodes agree or
+participate in an operation.
+
+For example, with three JournalNodes:
+
+JN1
+JN2
+JN3
+
+If one JournalNode fails, the remaining two can still form a
+majority.
+
+This helps the HA system continue operating despite limited
+component failures.
+
+
+9. FAULT TOLERANCE IN HDFS
+--------------------------
+
+Important mechanisms include:
+
+Replication:
+- Multiple copies of data blocks are maintained.
+- If one DataNode fails, another replica may be available.
+
+Heartbeat:
+- Helps detect DataNode failures.
+
+NameNode HA:
+- Provides Active and Standby NameNodes.
+- Reduces the risk associated with NameNode failure.
+
+Quorum Journal Manager:
+- Helps synchronize namespace edits between Active and Standby
+  NameNodes.
+- Uses JournalNodes and quorum-based operation.
+
+
+10. SIMPLE FAULT TOLERANCE FLOW
+-------------------------------
+
+                HDFS Cluster
+                     |
+          +----------+----------+
+          |                     |
+          v                     v
+     Data Replication       NameNode HA
+          |                     |
+          v                     v
+     DataNode Failure      Active / Standby
+          |                     |
+          v                     v
+     Replica Available     QJM / JournalNodes
+
+
+11. FAILURE EXAMPLE
+-------------------
+
+Suppose DataNode 2 fails.
+
+Before failure:
+
+Block A -> DataNode 1
+Block A -> DataNode 2
+Block A -> DataNode 3
+
+
+DataNode 2 fails.
+
+The NameNode detects the failure using heartbeats.
+
+Because Block A has replicas on DataNode 1 and DataNode 3,
+the data can still be available.
+
+HDFS can also create another replica when necessary to maintain
+the configured replication level.
+
+
+12. IMPORTANT TERMS
+-------------------
+
+Heartbeat:
+A periodic status signal used to indicate that a DataNode is
+alive.
+
+SPOF:
+A component whose failure can cause an important service or
+system to become unavailable.
+
+NameNode HA:
+A design using Active and Standby NameNodes to improve
+availability.
+
+JournalNode:
+A component that stores namespace edit information used by
+HDFS HA.
+
+Quorum:
+A majority of nodes required for an operation.
+
+
+KEY IDEA
+--------
+
+Fault tolerance allows a distributed system to continue operating
+despite component failures.
+
+Heartbeat = Detects DataNode health.
+
+Replication = Keeps multiple copies of data.
+
+SPOF = Critical component whose failure can affect the system.
+
+NameNode HA = Active and Standby NameNodes.
+
+QJM = Uses JournalNodes and quorum-based shared edit storage
+to support NameNode HA.

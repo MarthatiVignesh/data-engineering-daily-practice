@@ -1,0 +1,349 @@
+DAY 3 - BIG DATA FUNDAMENTALS, HDFS & LINUX
+============================================
+
+TOPIC: HADOOP EVOLUTION
+
+
+1. INTRODUCTION
+---------------
+
+Hadoop is an open-source framework designed for distributed
+storage and processing of large datasets across clusters of
+computers.
+
+Hadoop became an important platform for Big Data because it
+allows organizations to distribute data and processing across
+multiple machines.
+
+
+2. GOOGLE FILE SYSTEM (GFS)
+---------------------------
+
+Google File System (GFS) was a distributed file system designed
+by Google to store and process very large datasets using
+clusters of commodity computers.
+
+Important ideas associated with GFS include:
+
+- Distributed storage
+- Large files
+- Data replication
+- Fault tolerance
+- Commodity hardware
+
+GFS demonstrated how large-scale data storage could be handled
+using multiple machines instead of relying on one large server.
+
+
+3. MAPREDUCE
+------------
+
+MapReduce is a distributed programming model used to process
+large datasets across multiple machines.
+
+It mainly consists of two phases:
+
+MAP
+---
+
+The Map phase processes input data and produces intermediate
+key-value pairs.
+
+Example:
+
+Input:
+"apple banana apple"
+
+Map output:
+
+(apple, 1)
+(banana, 1)
+(apple, 1)
+
+
+REDUCE
+------
+
+The Reduce phase combines intermediate values belonging to the
+same key.
+
+Example:
+
+(apple, 1)
+(apple, 1)
+
+becomes:
+
+(apple, 2)
+
+Final result:
+
+apple  = 2
+banana = 1
+
+
+4. HADOOP AND MAPREDUCE
+-----------------------
+
+Hadoop adopted the MapReduce programming model for distributed
+data processing.
+
+A simplified flow is:
+
+Input Data
+    |
+    v
++-----------+
+|    Map    |
++-----------+
+    |
+    v
+Intermediate Data
+    |
+    v
++-----------+
+|  Shuffle  |
++-----------+
+    |
+    v
++-----------+
+|   Reduce  |
++-----------+
+    |
+    v
+Final Result
+
+
+5. HADOOP 1.0
+-------------
+
+Hadoop 1.0 used HDFS for distributed storage and MapReduce for
+distributed processing.
+
+Main components:
+
+HDFS
+- Distributed file system.
+- Stores large files across multiple machines.
+- Provides data replication and fault tolerance.
+
+MapReduce
+- Distributed processing framework.
+- Processes data in parallel across the cluster.
+
+In the Hadoop 1.x architecture, the JobTracker was responsible
+for coordinating MapReduce jobs and managing cluster resources,
+while TaskTrackers executed tasks.
+
+
+Simplified Hadoop 1.0:
+
+             Hadoop 1.x
+                 |
+        +--------+--------+
+        |                 |
+       HDFS           MapReduce
+        |                 |
+   NameNode +       JobTracker +
+   DataNodes         TaskTrackers
+
+
+6. LIMITATIONS OF HADOOP 1.0
+----------------------------
+
+Some limitations included:
+
+- Resource management was closely tied to MapReduce.
+- JobTracker was a central component.
+- The architecture was less flexible for workloads other than
+  MapReduce.
+- Large-scale cluster resource management could become a
+  challenge.
+
+
+7. HADOOP 2.0
+-------------
+
+Hadoop 2.0 introduced YARN (Yet Another Resource Negotiator).
+
+YARN separated resource management from the processing framework.
+
+This allowed Hadoop to support processing frameworks other than
+MapReduce.
+
+
+Simplified Hadoop 2.0:
+
+                  Hadoop 2.x
+                      |
+            +---------+---------+
+            |                   |
+           HDFS                YARN
+            |                   |
+       Storage Layer      Resource Management
+                                |
+                 +--------------+--------------+
+                 |              |              |
+             MapReduce       Spark          Other Apps
+
+
+8. YARN
+-------
+
+YARN stands for:
+
+Yet Another Resource Negotiator.
+
+YARN is responsible for managing cluster resources and scheduling
+applications.
+
+Important YARN components include:
+
+ResourceManager
+- Main resource management component.
+- Manages cluster resources.
+- Schedules applications.
+
+NodeManager
+- Runs on individual worker nodes.
+- Manages resources and containers on that node.
+- Reports information to the ResourceManager.
+
+ApplicationMaster
+- Manages a particular application.
+- Requests resources from the ResourceManager.
+- Coordinates execution of the application.
+
+
+Simple YARN architecture:
+
+              +------------------+
+              | ResourceManager  |
+              +------------------+
+                       |
+             +---------+---------+
+             |                   |
+             v                   v
+     +---------------+   +---------------+
+     | NodeManager   |   | NodeManager   |
+     | Worker Node 1 |   | Worker Node 2 |
+     +---------------+   +---------------+
+             |                   |
+             v                   v
+        Containers          Containers
+
+
+9. HADOOP 1.0 VS HADOOP 2.0
+----------------------------
+
+Hadoop 1.0:
+
+- HDFS + MapReduce.
+- JobTracker managed MapReduce jobs and resources.
+- TaskTracker executed tasks.
+- Resource management was tightly coupled with MapReduce.
+
+Hadoop 2.0:
+
+- HDFS + YARN + processing frameworks.
+- YARN handles resource management.
+- Supports multiple processing frameworks.
+- More flexible architecture.
+- Better separation of storage, resource management and
+  processing.
+
+
+10. HADOOP ECOSYSTEM
+--------------------
+
+The Hadoop ecosystem contains multiple tools that work with
+Hadoop for different Big Data requirements.
+
+Important ecosystem tools include:
+
+HDFS
+- Distributed storage.
+
+YARN
+- Cluster resource management and scheduling.
+
+MapReduce
+- Distributed batch processing model.
+
+Hive
+- SQL-like querying and data warehousing.
+
+HBase
+- Distributed NoSQL database.
+
+Sqoop
+- Tool historically used to transfer data between relational
+  databases and Hadoop.
+
+Flume
+- Tool historically used for collecting and moving log/event
+  data.
+
+Oozie
+- Workflow scheduling system for Hadoop jobs.
+
+Pig
+- Data flow scripting platform used for data processing.
+
+
+11. SIMPLIFIED HADOOP ECOSYSTEM
+-------------------------------
+
+                     HADOOP
+                        |
+        +---------------+---------------+
+        |               |               |
+       HDFS            YARN          MapReduce
+        |               |               |
+        +---------------+---------------+
+                        |
+             +----------+----------+
+             |          |          |
+            Hive       HBase      Other Tools
+             |
+        +----+----+
+        |         |
+      Sqoop     Flume
+        |
+      Oozie / Pig
+
+
+12. EVOLUTION SUMMARY
+---------------------
+
+GFS:
+Distributed storage ideas for very large datasets.
+
+MapReduce:
+Distributed data processing model.
+
+Hadoop 1.0:
+HDFS + MapReduce with JobTracker and TaskTrackers.
+
+Hadoop 2.0:
+Introduced YARN and separated resource management from
+MapReduce.
+
+YARN:
+Provides cluster resource management and scheduling.
+
+Hadoop Ecosystem:
+Provides multiple tools for storage, processing, querying,
+database management, data ingestion and workflow management.
+
+
+KEY IDEA
+--------
+
+Hadoop evolved from a system focused mainly on HDFS and
+MapReduce into a more flexible platform where YARN separates
+resource management from processing.
+
+Hadoop 1.0 = HDFS + MapReduce
+
+Hadoop 2.0 = HDFS + YARN + Multiple Processing Frameworks

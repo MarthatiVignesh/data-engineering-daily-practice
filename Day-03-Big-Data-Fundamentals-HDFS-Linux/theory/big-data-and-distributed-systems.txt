@@ -1,0 +1,224 @@
+DAY 3 - BIG DATA FUNDAMENTALS, HDFS & LINUX
+============================================
+
+TOPIC: INTRODUCTION TO BIG DATA AND DISTRIBUTED SYSTEMS
+
+
+1. WHAT IS BIG DATA?
+--------------------
+
+Big Data refers to very large, complex, and continuously generated
+datasets that can be difficult to store, process, and analyze using
+traditional systems.
+
+Big Data can come from many sources such as:
+
+- Websites
+- Mobile applications
+- Social media
+- Sensors
+- IoT devices
+- Business applications
+- Transaction systems
+- Machine logs
+
+
+2. WHY DO WE NEED DISTRIBUTED SYSTEMS?
+--------------------------------------
+
+As the amount of data increases, storing and processing everything
+on a single computer can become difficult.
+
+A distributed system uses multiple computers working together to
+store data and perform processing.
+
+Instead of depending on one machine:
+
+             Single Machine
+                  |
+                  v
+          +---------------+
+          | Large Dataset |
+          +---------------+
+
+
+A distributed system divides the work across multiple machines:
+
+                  Dataset
+                     |
+          +----------+----------+
+          |          |          |
+          v          v          v
+       Machine 1  Machine 2  Machine 3
+          |          |          |
+          +----------+----------+
+                     |
+                     v
+              Combined Result
+
+
+3. MONOLITHIC SYSTEM
+--------------------
+
+A monolithic system performs its storage and processing primarily
+on a single system or tightly coupled application.
+
+Example:
+
++---------------------------+
+|       Single Server       |
+|                           |
+| Storage + Processing      |
+| Application               |
++---------------------------+
+
+Advantages:
+
+- Simple architecture.
+- Easier to manage for small workloads.
+- Simple deployment.
+
+Limitations:
+
+- Limited scalability.
+- Hardware resources are limited.
+- Failure of the system can affect the entire workload.
+- Difficult to handle very large datasets.
+
+
+4. DISTRIBUTED SYSTEM
+---------------------
+
+A distributed system consists of multiple computers that work
+together as one logical system.
+
+Example:
+
++------------+    +------------+    +------------+
+|  Machine 1 |    |  Machine 2 |    |  Machine 3 |
++------------+    +------------+    +------------+
+       |                 |                 |
+       +-----------------+-----------------+
+                         |
+                         v
+                  Distributed System
+
+
+Advantages:
+
+- Horizontal scalability.
+- Work can be divided across machines.
+- Large datasets can be distributed.
+- Processing can happen in parallel.
+- Failure can be handled using redundancy and fault tolerance.
+
+
+5. MONOLITHIC VS DISTRIBUTED
+----------------------------
+
+Monolithic System:
+
+- Mainly depends on a single system.
+- Vertical scaling is commonly used.
+- Limited by the resources of one machine.
+- Simpler architecture.
+- Suitable for smaller workloads.
+
+Distributed System:
+
+- Uses multiple machines.
+- Horizontal scaling can be used.
+- Work and data can be distributed.
+- Supports parallel processing.
+- Suitable for large-scale workloads.
+
+
+6. HORIZONTAL AND VERTICAL SCALING
+----------------------------------
+
+Vertical Scaling:
+
+Increase the resources of one machine.
+
+Example:
+
+        One Server
+            |
+      +-------------+
+      | More CPU    |
+      | More RAM    |
+      | More Storage|
+      +-------------+
+
+
+Horizontal Scaling:
+
+Add more machines.
+
+Example:
+
+       +----------+
+       | Server 1 |
+       +----------+
+            |
+       +----------+
+       | Server 2 |
+       +----------+
+            |
+       +----------+
+       | Server 3 |
+       +----------+
+
+
+7. WHY DISTRIBUTED SYSTEMS ARE IMPORTANT FOR BIG DATA
+------------------------------------------------------
+
+Distributed systems help Big Data platforms by:
+
+- Storing data across multiple machines.
+- Processing large datasets in parallel.
+- Scaling by adding more machines.
+- Providing fault tolerance through redundancy.
+- Handling workloads that exceed the capacity of one machine.
+
+
+8. SIMPLE BIG DATA ARCHITECTURE
+-------------------------------
+
+Data Sources
+     |
+     v
++-------------------+
+| Distributed       |
+| Storage           |
++-------------------+
+     |
+     v
++-------------------+
+| Distributed       |
+| Processing        |
++-------------------+
+     |
+     v
++-------------------+
+| Analytics /       |
+| Applications      |
++-------------------+
+
+
+KEY IDEA
+--------
+
+Big Data creates challenges in storing and processing very large
+datasets.
+
+Distributed systems solve these challenges by using multiple
+machines that work together.
+
+Monolithic = Mainly one system.
+
+Distributed = Multiple systems working together.
+
+Vertical Scaling = Make one machine bigger.
+
+Horizontal Scaling = Add more machines.
