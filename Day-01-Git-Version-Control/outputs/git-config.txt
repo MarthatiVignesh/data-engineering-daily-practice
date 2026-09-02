@@ -1,0 +1,2 @@
+user.name=MarthatiVignesh
+user.email=vigneshmarthati18@gmail.com

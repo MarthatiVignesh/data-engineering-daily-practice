@@ -1,0 +1,19 @@
+DAY 1 - GIT FILE OPERATIONS
+
+git reset <file>
+    Removes a file from the staging area without deleting it.
+
+git rm <file>
+    Removes a tracked file and stages the deletion.
+
+git mv <old> <new>
+    Renames or moves a tracked file and stages the change.
+
+git tag <tag-name>
+    Creates a tag for a specific point in Git history.
+
+git tag
+    Lists available tags.
+
+git show <tag-name>
+    Displays information about the tagged commit.
