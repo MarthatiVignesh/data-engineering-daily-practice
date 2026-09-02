@@ -1,0 +1,7 @@
+*   33fef90 Merge pull request #1 from MarthatiVignesh/day1-feature
+|\  
+| * 2b43691 Add Day 1 feature demo
+|/  
+* 0b968cc Add Git fetch pull and remote outputs
+* 4976f13 Add Day 1 documentation
+* 4d8bde8 Add Day 1 Git practice
