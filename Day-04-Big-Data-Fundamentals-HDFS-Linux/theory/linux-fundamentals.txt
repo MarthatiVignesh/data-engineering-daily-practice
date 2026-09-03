@@ -1,0 +1,52 @@
+DAY 4 - LINUX FUNDAMENTALS
+
+1. Linux File System
+--------------------
+Linux uses a hierarchical file system that starts from the root directory (/).
+
+Important directories:
+- /       : Root of the Linux file system
+- /home   : Contains users' home directories
+- /tmp    : Temporary files
+- /usr    : Applications, libraries and system resources
+- /etc    : System and application configuration files
+
+2. Core Linux Commands
+----------------------
+ls      : Lists files and directories
+ls -l   : Lists files with detailed information
+mkdir   : Creates a directory
+touch   : Creates an empty file or updates file timestamps
+cp      : Copies files or directories
+mv      : Moves or renames files or directories
+rm      : Removes files
+rmdir   : Removes an empty directory
+cat     : Displays file contents
+
+3. Command Examples
+-------------------
+mkdir folder
+touch file.txt
+ls -l
+cp file.txt file-copy.txt
+mv file.txt renamed.txt
+rm file-copy.txt
+rmdir folder
+
+4. Important Difference
+-----------------------
+cp  : Creates a copy and keeps the original.
+mv  : Moves or renames the source.
+rm  : Deletes a file.
+rmdir: Removes an empty directory.
+
+5. Linux File Permissions
+-------------------------
+A permission such as rw-r--r-- contains:
+- rw- : Owner permissions
+- r-- : Group permissions
+- r-- : Other users' permissions
+
+r = read
+w = write
+x = execute

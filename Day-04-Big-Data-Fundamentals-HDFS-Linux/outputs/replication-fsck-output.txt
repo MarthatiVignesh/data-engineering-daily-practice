@@ -1,0 +1,44 @@
+FSCK started by sri (auth:SIMPLE) from /127.0.0.1 for path /user/sri/day4-practice/hdfs-test.txt at Thu Sep 03 10:47:07 IST 2026
+
+/user/sri/day4-practice/hdfs-test.txt 24 bytes, replicated: replication=2, 1 block(s):  Under replicated BP-173644709-127.0.1.1-1788411868913:blk_1073741825_1001. Target Replicas is 2 but found 1 live replica(s), 0 decommissioned replica(s), 0 decommissioning replica(s).
+0. BP-173644709-127.0.1.1-1788411868913:blk_1073741825_1001 len=24 Live_repl=1  [DatanodeInfoWithStorage[127.0.0.1:9866,DS-70c2ed90-04ca-4c9d-bfcf-f4a02f7cb2f9,DISK]]
+
+
+Status: HEALTHY
+ Number of data-nodes:	1
+ Number of racks:		1
+ Total dirs:			0
+ Total symlinks:		0
+
+Replicated Blocks:
+ Total size:	24 B
+ Total files:	1
+ Total blocks (validated):	1 (avg. block size 24 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	1 (100.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		1 (50.0 %)
+ Blocks queued for replication:	0
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+ Blocks queued for replication:	0
+FSCK ended at Thu Sep 03 10:47:07 IST 2026 in 3 milliseconds
+
+
+The filesystem under path '/user/sri/day4-practice/hdfs-test.txt' is HEALTHY

@@ -1,0 +1,86 @@
+DAY 4 - MAPREDUCE CONCEPT WALKTHROUGH
+
+1. What is MapReduce?
+---------------------
+MapReduce is a distributed data-processing programming model used to process
+large datasets in parallel.
+
+It divides data processing into two main stages:
+- Map
+- Reduce
+
+A Shuffle and Sort stage occurs between Map and Reduce.
+
+2. Map Stage
+------------
+The Map stage reads input data and converts it into intermediate key-value pairs.
+
+Example input:
+big data
+big data
+data engineering
+
+Mapper output:
+(big, 1)
+(data, 1)
+(big, 1)
+(data, 1)
+(data, 1)
+(engineering, 1)
+
+3. Shuffle and Sort
+-------------------
+The intermediate key-value pairs are grouped by key.
+
+Example:
+big         -> 1, 1
+data        -> 1, 1, 1
+engineering -> 1
+
+4. Reduce Stage
+---------------
+The Reduce stage processes each key and its grouped values.
+
+Example:
+big         -> 2
+data        -> 3
+engineering -> 1
+
+5. Overall Flow
+---------------
+Input
+  |
+  v
+Map
+  |
+  v
+Intermediate key-value pairs
+  |
+  v
+Shuffle and Sort
+  |
+  v
+Reduce
+  |
+  v
+Final Output
+
+6. Word Count Example
+---------------------
+For the input:
+
+big data
+big data
+data engineering
+
+The final word counts are:
+
+big         2
+data        3
+engineering 1
+
+7. Key Idea
+-----------
+Map transforms input into key-value pairs.
+Shuffle and Sort groups values by key.
+Reduce combines or aggregates the grouped values.

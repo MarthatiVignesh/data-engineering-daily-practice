@@ -1,0 +1,117 @@
+DAY 4 - HDFS CLI HANDS-ON PRACTICE
+
+HDFS PRACTICE PATH:
+ /user/sri/day4-practice
+
+1. Check HDFS root
+Command:
+hdfs dfs -ls /
+
+Result:
+HDFS root was accessible and initially empty.
+
+2. Create HDFS directory
+Command:
+hdfs dfs -mkdir -p /user/sri/day4-practice
+
+Result:
+Directory created successfully.
+
+3. Create local test file
+Command:
+echo "Day 4 HDFS CLI practice" > practice/hdfs-test.txt
+
+Result:
+Local file created successfully.
+
+4. Upload local file to HDFS
+Command:
+hdfs dfs -put practice/hdfs-test.txt /user/sri/day4-practice/
+
+Result:
+File uploaded successfully.
+
+5. List HDFS files
+Command:
+hdfs dfs -ls /user/sri/day4-practice
+
+Result:
+hdfs-test.txt was displayed with size 24 bytes.
+
+6. Read HDFS file
+Command:
+hdfs dfs -cat /user/sri/day4-practice/hdfs-test.txt
+
+Result:
+Day 4 HDFS CLI practice
+
+7. Create HDFS folder
+Command:
+hdfs dfs -mkdir /user/sri/day4-practice/input
+
+Result:
+input directory created successfully.
+
+8. Copy HDFS file
+Command:
+hdfs dfs -cp /user/sri/day4-practice/hdfs-test.txt /user/sri/day4-practice/input/
+
+Result:
+A copy of hdfs-test.txt was created inside input/.
+
+9. Move HDFS file
+Command:
+hdfs dfs -mkdir /user/sri/day4-practice/archive
+hdfs dfs -mv /user/sri/day4-practice/input/hdfs-test.txt /user/sri/day4-practice/archive/
+
+Result:
+File moved from input/ to archive/.
+
+10. Remove HDFS file
+Command:
+hdfs dfs -rm /user/sri/day4-practice/archive/hdfs-test.txt
+
+Result:
+File deleted successfully.
+
+11. Remove empty HDFS directory
+Command:
+hdfs dfs -rmdir /user/sri/day4-practice/archive
+
+Result:
+Empty archive directory removed successfully.
+
+12. Remove non-empty HDFS directory
+Command:
+hdfs dfs -rm -r /user/sri/day4-practice/temp
+
+Result:
+Non-empty temp directory and its contents were removed recursively.
+
+13. Change replication factor
+Command:
+hdfs dfs -setrep 2 /user/sri/day4-practice/hdfs-test.txt
+
+Result:
+Replication factor changed from 1 to 2.
+
+14. Check block replication
+Command:
+hdfs fsck /user/sri/day4-practice/hdfs-test.txt -files -blocks -locations
+
+Result:
+Requested replication = 2.
+Live replicas = 1 because the cluster has one DataNode.
+The block was under-replicated but not missing or corrupt.
+
+15. View metadata
+Commands:
+hdfs dfs -stat "%n | size=%b bytes | replication=%r | owner=%u | group=%g | permissions=%F" /user/sri/day4-practice/hdfs-test.txt
+hdfs dfs -ls -h /user/sri/day4-practice/hdfs-test.txt
+
+Result:
+File size = 24 bytes
+Replication = 2
+Owner = sri
+Group = supergroup
+Type = regular file

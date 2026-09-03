@@ -1,0 +1,7 @@
+COMMAND 1:
+hdfs dfs -stat "%n | size=%b bytes | replication=%r | owner=%u | group=%g | permissions=%F" /user/sri/day4-practice/hdfs-test.txt
+hdfs-test.txt | size=24 bytes | replication=2 | owner=sri | group=supergroup | permissions=regular file
+
+COMMAND 2:
+hdfs dfs -ls -h /user/sri/day4-practice/hdfs-test.txt
+-rw-r--r--   2 sri supergroup         24 2026-09-03 10:37 /user/sri/day4-practice/hdfs-test.txt

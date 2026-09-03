@@ -1,0 +1,33 @@
+DAY 4 - LINUX COMMAND PRACTICE
+
+1. mkdir
+Created:
+practice/linux-filesystem
+
+2. touch
+Created:
+file1.txt
+file2.txt
+
+3. ls -l
+Verified the files and their permissions.
+
+4. cp
+Copied:
+file1.txt -> file1-copy.txt
+
+5. mv
+Renamed:
+file2.txt -> file2-renamed.txt
+
+6. rm
+Removed:
+file1-copy.txt
+
+7. rmdir
+Created and removed:
+temp-folder
+
+FINAL DIRECTORY CONTENTS:
+file1.txt
+file2-renamed.txt
