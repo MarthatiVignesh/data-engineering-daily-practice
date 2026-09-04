@@ -1,0 +1,62 @@
+DAY 5 - SQOOP FREE-FORM QUERY TROUBLESHOOTING
+
+Initial Problem
+---------------
+The normal Sqoop table import worked, but free-form query imports
+failed with:
+
+Access denied for user 'sqoop'@'localhost' (using password: YES)
+
+Investigation
+-------------
+
+1. Verified the SQL query directly in MySQL.
+   Result: 2 IT employees were returned successfully.
+
+2. Verified the Sqoop MySQL user.
+   The original user used caching_sha2_password.
+
+3. Tested Sqoop eval:
+   sqoop eval --query "SELECT 1"
+
+   Result:
+   Access denied for user 'sqoop'@'localhost'
+
+4. Tested the old JDBC driver directly.
+   Connector/J 5.1.49 also produced:
+   Access denied for user
+
+5. Tested MySQL TCP connection.
+   The localhost socket connection worked, but the TCP connection
+   using 127.0.0.1 required an explicitly configured TCP account.
+
+6. Created a dedicated TCP user using mysql_native_password.
+
+7. Verified TCP access with:
+   mysql -h 127.0.0.1 -P 3306 -u sqoop_tcp -p
+
+   Result:
+   Login successful and all 5 employees were accessible.
+
+8. Tested Connector/J 8.0.33 directly using Java JDBC.
+   Result:
+   JDBC CONNECTION SUCCESSFUL
+
+9. Updated the Sqoop library to use Connector/J 8.0.33 while
+   keeping the original 5.1.49 JAR as a backup.
+
+10. Sqoop eval finally succeeded:
+    SELECT 1
+    Result: 1
+
+Final Result
+------------
+Sqoop free-form query import completed successfully.
+
+Map input records: 2
+Map output records: 2
+Retrieved records: 2
+
+The HDFS output contained:
+1,Arjun,IT,55000.00,Hyderabad
+4,Priya,IT,70000.00,Hyderabad

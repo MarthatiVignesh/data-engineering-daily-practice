@@ -1,0 +1,28 @@
+DAY 5 - APACHE SQOOP FUNDAMENTALS
+
+1. What is Sqoop?
+Sqoop is a data transfer tool used to move structured data between
+relational databases such as MySQL and Hadoop.
+
+2. Sqoop Workflow
+MySQL Database
+      |
+      v
+   Sqoop
+      |
+      v
+ MapReduce / YARN
+      |
+      v
+    HDFS
+
+3. Key Features
+- Import data from relational databases into Hadoop.
+- Export Hadoop data back to relational databases.
+- Supports table imports.
+- Supports free-form SQL query imports.
+- Supports direct import for supported databases.
+- Integrates with Hadoop and MapReduce.
+
+4. Sqoop Version Used
+Sqoop 1.4.7

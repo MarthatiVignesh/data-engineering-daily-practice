@@ -1,0 +1,33 @@
+DAY 5 - MYSQL DATABASE SETUP FOR SQOOP
+
+Database:
+sqoop_practice
+
+Table:
+employees
+
+Table Structure:
+id INT PRIMARY KEY
+name VARCHAR(50)
+department VARCHAR(50)
+salary DECIMAL(10,2)
+city VARCHAR(50)
+
+Sample Records:
+
++----+-------+------------+----------+------------+
+| id | name  | department | salary   | city       |
++----+-------+------------+----------+------------+
+|  1 | Arjun | IT         | 55000.00 | Hyderabad  |
+|  2 | Sita  | HR         | 48000.00 | Vijayawada |
+|  3 | Kiran | Finance    | 62000.00 | Warangal   |
+|  4 | Priya | IT         | 70000.00 | Hyderabad  |
+|  5 | Ravi  | Sales      | 52000.00 | Vijayawada |
++----+-------+------------+----------+------------+
+
+Total records:
+5
+
+Purpose:
+This MySQL table will be used as the source database
+for Apache Sqoop import practicals.

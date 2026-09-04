@@ -1,0 +1,25 @@
+DAY 5 - SQOOP MYSQL CONNECTION TEST
+
+Command:
+sqoop list-tables \
+--connect jdbc:mysql://localhost:3306/sqoop_practice \
+--username sqoop \
+-P
+
+Result:
+
+2026-09-04 18:19:26,359 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+employees
+
+Connection Status:
+SUCCESS
+
+Database:
+sqoop_practice
+
+Table Found:
+employees
+
+Note:
+Sqoop also displayed SSL and optional HCatalog/Accumulo/ZooKeeper
+warnings. These warnings did not prevent the MySQL connection.

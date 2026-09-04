@@ -1,0 +1,48 @@
+DAY 5 - SQOOP DEFAULT IMPORT
+
+Source:
+MySQL
+
+Database:
+sqoop_practice
+
+Table:
+employees
+
+Destination:
+HDFS /user/sri/day5-employees
+
+Command:
+sqoop import \
+--connect jdbc:mysql://localhost:3306/sqoop_practice \
+--username sqoop \
+-P \
+--table employees \
+--target-dir /user/sri/day5-employees \
+--num-mappers 1
+
+Import Result:
+SUCCESS
+
+Map Input Records:
+5
+
+Map Output Records:
+5
+
+Launched Map Tasks:
+1
+
+Retrieved Records:
+5
+
+HDFS Output:
+_SUCCESS
+part-m-00000
+
+Imported Data:
+1,Arjun,IT,55000.00,Hyderabad
+2,Sita,HR,48000.00,Vijayawada
+3,Kiran,Finance,62000.00,Warangal
+4,Priya,IT,70000.00,Hyderabad
+5,Ravi,Sales,52000.00,Vijayawada

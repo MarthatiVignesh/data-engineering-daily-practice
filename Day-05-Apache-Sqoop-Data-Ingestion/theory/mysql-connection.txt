@@ -1,0 +1,32 @@
+DAY 5 - MYSQL CONNECTION
+
+MySQL Server:
+8.0.46
+
+Database:
+sqoop_practice
+
+Table:
+employees
+
+JDBC Connection:
+jdbc:mysql://127.0.0.1:3306/sqoop_practice
+
+Sqoop uses a JDBC driver to communicate with MySQL.
+
+MySQL Connector/J:
+mysql-connector-j-8.0.33.jar
+
+A dedicated TCP user was configured for the Sqoop practice
+connection.
+
+The password is not stored in this documentation.
+The Sqoop -P option is used to enter the password interactively.
+
+Connection verification was performed using:
+- MySQL command-line client
+- Sqoop eval
+- Java JDBC test
+
+Final JDBC verification:
+JDBC CONNECTION SUCCESSFUL

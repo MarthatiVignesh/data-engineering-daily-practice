@@ -1,0 +1,74 @@
+DAY 5 - SQOOP IMPORT MODES
+
+1. DEFAULT TABLE IMPORT
+
+Option:
+--table employees
+
+Purpose:
+Imports the complete employees table from MySQL into HDFS.
+
+Result:
+5 records imported successfully.
+
+HDFS target:
+/user/sri/day5-employees
+
+
+2. FREE-FORM QUERY IMPORT
+
+Option:
+--query
+
+Purpose:
+Imports the result of a custom SQL query.
+
+Query used:
+
+SELECT id, name, department, salary, city
+FROM employees
+WHERE department = 'IT'
+AND $CONDITIONS
+
+Result:
+2 records imported successfully.
+
+Imported records:
+
+1,Arjun,IT,55000.00,Hyderabad
+4,Priya,IT,70000.00,Hyderabad
+
+HDFS target:
+/user/sri/day5-it-employees
+
+
+3. DIRECT IMPORT
+
+Option:
+--direct
+
+Purpose:
+Uses the database-specific direct import mechanism supported
+by Sqoop.
+
+For MySQL, Sqoop reported:
+
+Beginning mysqldump fast path import
+
+Result:
+5 records imported successfully.
+
+HDFS target:
+/user/sri/day5-direct-employees
+
+
+SUMMARY
+
+Default table import:
+5 records
+
+Free-form query import:
+2 records
+
+Direct import:
+5 records
